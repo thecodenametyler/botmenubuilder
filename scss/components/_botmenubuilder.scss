@@ -1,0 +1,177 @@
+.botmenubuilder {
+    &__body {
+        padding: 40px;
+    }
+    &__header {
+        background: #f9fafc;
+        box-shadow: 0 6px 12px #8c98a414;
+        width: 100%;
+        position: sticky;
+        top: 0;
+        padding: 20px;
+        z-index: 9;
+    }
+    &__add{
+        &__fields {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__item {
+                background: #fff;
+                box-shadow: 0 6px 12px #f9fafc;
+                border: 1px solid rgba(231,234,243,.7);
+                border-radius: 4px;
+                overflow: hidden;
+            }
+        }
+    }
+    &__item {
+        position: relative;
+        padding: 20px;
+        border-radius: 8px;
+        width: 100%;
+        margin: 0 auto;
+        background: #fff;
+        box-shadow: 0 6px 12px #8c98a414;
+        border: 1px solid rgba(231,234,243,.7);
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+
+            h6 {
+                margin: 0;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+
+        &__body {
+        }
+        &__title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        &__options {
+            &__wrapper{
+                h6 {
+                    margin: 0;
+                    margin-bottom: 10px;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+    &__options {
+        margin-bottom: 10px;
+        &__item {
+            width: 100%;
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+        &__field {
+            display: block;
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+        }
+        &__actions {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            margin-left: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &__item {
+                &:not(:last-child) {
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        &__parent {
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &__child {
+            position: relative;
+            &:before {
+                display: block;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            &:before {
+                height: 100%;
+                width: 2px;
+                background: #e3e6ed;
+                top: 50%;
+                left: 6px;
+                transform: translateY(-50%);
+            }
+
+            .botmenubuilder__options__item__inner__wrapper {
+                display: block;
+                padding: 8px 0 0 26px;
+                margin-bottom: 8px;
+                // background: red;
+            }
+        }
+    }
+    
+
+    &__wrapper {
+        background: #f9fafc;
+        position: relative;
+        box-shadow: 0 6px 12px #f9fafc;
+        border-radius: 8px;
+        width: 100%;
+
+        textarea, 
+        input[type="text"], 
+        input[type="number"] {
+            display: block;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #e3e6ed;
+            border-radius: 4px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.4;
+            background-color: #fff;
+            margin: 0;
+            transition: all ease 0.3s;
+        }
+        textarea {
+            resize:vertical;
+        }
+        
+        @import 'cust_button';
+    }
+    
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bot Menu style Builder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body>
+  <div class="main__wrapper">
+    
+    <div class="botmenubuilder__wrapper">
+      <div class="botmenubuilder__datafields">
+        <button type="button" class="botmenubuilder__export__btn button">EXPORT</button>
+        <input id="Data" name="data" type="text" value="[]">
+      </div>
+
+      <div class="botmenubuilder">
+        <div class="botmenubuilder__header">
+          
+          <div class="botmenubuilder__add__fields__wrapper">
+            <ul class="botmenubuilder__add__fields">
+              <li class="botmenubuilder__add__fields__item">
+                  <button class="button button-icontext button-icontext--iconlg button-hover-primary" type="button">
+                      <i class="icon-chat"></i>
+                      <span>Add a Top-level question</span>
+                  </button>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="botmenubuilder__body">
+          <div class="botmenubuilder__item" data-botmenubuilder-q-uid="UUID">
+            <div class="botmenubuilder__item__header">
+                <h6>Question <span class="botmenubuilder__item__index">1</span></h6>
+                <div>
+                  <button type="button" title="remove" class="botmenubuilder__remove__field button button-icon button-icon--lg button-hover-danger">
+                    <i class="icon-clear"></i>
+                  </button>
+                </div>
+            </div>
+            <div class="botmenubuilder__item__body">
+              <div class="botmenubuilder__item__title">
+                <textarea name="botmenubuilder-title-UUID" id="" placeholder="Question title, ex: Who is Joey?" rows="1"></textarea>
+              </div>
+              <div class="botmenubuilder__item__options__wrapper">
+                <h6><strong>OPTIONS</strong></h6>
+                <div class="botmenubuilder__options">
+
+                  <div class="botmenubuilder__options__item">
+
+                    <div class="botmenubuilder__options__item__inner__wrapper">
+                        
+                      <div class="botmenubuilder__options__parent">
+                        <i class="icon-drag_indicator"></i>
+                        <div class="botmenubuilder__options__field">
+                            <textarea name="botmenubuilder-option-UUID-1" id="" placeholder="Option title, ex: I like it. What’s not to like? Custard? Good. Jam? Good. Meat? Good." rows="1"></textarea>
+                            <ul class="botmenubuilder__options__actions">
+                              <li class="botmenubuilder__options__actions__item">
+                                  <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-primary"><i class="icon-add_comment"></i></button>
+                              </li>
+                              <li class="botmenubuilder__options__actions__item">
+                                  <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                              </li>
+                            </ul>
+                        </div>
+                      </div>
+
+                      <div class="botmenubuilder__options__child">
+                        
+                        <!-- loop here for multiple chlid -->
+                        <div class="botmenubuilder__options__item__inner__wrapper">
+                            
+                          <div class="botmenubuilder__options__parent">
+                            <i class="icon-drag_indicator"></i>
+                            <div class="botmenubuilder__options__field">
+                                <textarea name="botmenubuilder-option-UUID-1-1" id="" placeholder="Option title, ex: I like it. What’s not to like? Custard? Good. Jam? Good. Meat? Good." rows="1"></textarea>
+                                <ul class="botmenubuilder__options__actions">
+                                  <li class="botmenubuilder__options__actions__item">
+                                      <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-primary"><i class="icon-add_comment"></i></button>
+                                  </li>
+                                  <li class="botmenubuilder__options__actions__item">
+                                      <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+
+                          <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper --> 
+                          <div class="botmenubuilder__options__child">
+                            
+                            <div class="botmenubuilder__options__item__inner__wrapper">
+                                
+                              <div class="botmenubuilder__options__parent">
+                                <i class="icon-drag_indicator"></i>
+                                <div class="botmenubuilder__options__field">
+                                    <textarea name="botmenubuilder-option-UUID-1-1" id="" placeholder="Option title, ex: I like it. What’s not to like? Custard? Good. Jam? Good. Meat? Good." rows="1"></textarea>
+                                    <ul class="botmenubuilder__options__actions">
+                                      <li class="botmenubuilder__options__actions__item">
+                                          <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-primary"><i class="icon-add_comment"></i></button>
+                                      </li>
+                                      <li class="botmenubuilder__options__actions__item">
+                                          <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                                      </li>
+                                    </ul>
+                                </div>
+                              </div>
+
+                              <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper --> 
+                              <div class="botmenubuilder__options__child">
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        
+                        <div class="botmenubuilder__options__item__inner__wrapper">
+                            
+                          <div class="botmenubuilder__options__parent">
+                            <i class="icon-drag_indicator"></i>
+                            <div class="botmenubuilder__options__field">
+                                <textarea name="botmenubuilder-option-UUID-1-1" id="" placeholder="Option title, ex: I like it. What’s not to like? Custard? Good. Jam? Good. Meat? Good." rows="1"></textarea>
+                                <ul class="botmenubuilder__options__actions">
+                                  <li class="botmenubuilder__options__actions__item">
+                                      <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-primary"><i class="icon-add_comment"></i></button>
+                                  </li>
+                                  <li class="botmenubuilder__options__actions__item">
+                                      <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                                  </li>
+                                </ul>
+                            </div>
+                          </div>
+
+                          <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper --> 
+                          <div class="botmenubuilder__options__child">
+                            
+                            <div class="botmenubuilder__options__item__inner__wrapper">
+                                
+                              <div class="botmenubuilder__options__parent">
+                                <i class="icon-drag_indicator"></i>
+                                <div class="botmenubuilder__options__field">
+                                    <textarea name="botmenubuilder-option-UUID-1-1" id="" placeholder="Option title, ex: I like it. What’s not to like? Custard? Good. Jam? Good. Meat? Good." rows="1"></textarea>
+                                    <ul class="botmenubuilder__options__actions">
+                                      <li class="botmenubuilder__options__actions__item">
+                                          <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-primary"><i class="icon-add_comment"></i></button>
+                                      </li>
+                                      <li class="botmenubuilder__options__actions__item">
+                                          <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                                      </li>
+                                    </ul>
+                                </div>
+                              </div>
+
+                              <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper --> 
+                              <div class="botmenubuilder__options__child">
+                                
+                                <div class="botmenubuilder__options__item__inner__wrapper">
+                                    
+                                  <div class="botmenubuilder__options__parent">
+                                    <i class="icon-drag_indicator"></i>
+                                    <div class="botmenubuilder__options__field">
+                                        <textarea name="botmenubuilder-option-UUID-1-1" id="" placeholder="Option title, ex: I like it. What’s not to like? Custard? Good. Jam? Good. Meat? Good." rows="1"></textarea>
+                                        <ul class="botmenubuilder__options__actions">
+                                          <li class="botmenubuilder__options__actions__item">
+                                              <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-primary"><i class="icon-add_comment"></i></button>
+                                          </li>
+                                          <li class="botmenubuilder__options__actions__item">
+                                              <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                                          </li>
+                                        </ul>
+                                    </div>
+                                  </div>
+
+                                  <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper --> 
+                                  <div class="botmenubuilder__options__child">
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <div class="botmenubuilder__options__item">
+
+                    <div class="botmenubuilder__options__item__inner__wrapper">
+                        
+                      <div class="botmenubuilder__options__parent">
+                        <i class="icon-drag_indicator"></i>
+                        <div class="botmenubuilder__options__field">
+                            <textarea name="botmenubuilder-option-UUID-1" id="" placeholder="Option title, ex: I like it. What’s not to like? Custard? Good. Jam? Good. Meat? Good." rows="1"></textarea>
+                            <ul class="botmenubuilder__options__actions">
+                              <li class="botmenubuilder__options__actions__item">
+                                  <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-primary"><i class="icon-add_comment"></i></button>
+                              </li>
+                              <li class="botmenubuilder__options__actions__item">
+                                  <button type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                              </li>
+                            </ul>
+                        </div>
+                      </div>
+
+                      <div class="botmenubuilder__options__child">
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+                <button type="button" title="add option" class="botmenubuilder__add__option button button-icontext button-border-primary button-hover-primary"><i class="icon-add"></i><span>add option</span></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <script src="js/vendor/jquery-3.6.0.min.js"></script>
+  <script src="js/vendor/moment/moment.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/botmenubuilder.js"></script>
+</body>
+</html>
