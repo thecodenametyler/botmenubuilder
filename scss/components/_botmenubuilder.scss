@@ -85,6 +85,15 @@
             &:not(:last-child) {
                 margin-bottom: 10px;
             }
+            &__inner {
+                &__wrapper {
+                    transition: background-color ease 0.3s, border-radius ease 0.3s;
+                    &:hover {
+                        border-radius: 4px;
+                        background-color: rgba(183, 183, 183, 0.1);
+                    }
+                }
+            }
         }
         &__field {
             display: block;
@@ -111,10 +120,13 @@
         }
 
         &__parent {
-            
             display: flex;
             justify-content: space-between;
             align-items: center;
+            // transition: box-shadow ease 0.3s;
+            // &:hover {
+            //     box-shadow: 0 4px 8px 0px #b7b7b7;
+            // }
         }
         &__child {
             position: relative;
@@ -124,6 +136,12 @@
                 position: absolute;
                 top: 0;
                 left: 0;
+            }
+            
+            transition: background-color ease 0.3s, border-radius ease 0.3s;
+            &:hover {
+                border-radius: 4px;
+                background-color: rgba(183, 183, 183, 0.1);
             }
 
             &:before {
