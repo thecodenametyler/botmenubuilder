@@ -91,7 +91,7 @@ var botmenubuilder = {
                                         <textarea name="botmenubuilder-option-X_UID_X-1" id="X_UID_X-1" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
                                         <ul class="botmenubuilder__options__actions">
                                             <li class="botmenubuilder__options__actions__item">
-                                                <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X')" type="button" title="remove option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
+                                                <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', '1')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
                                             </li>
                                             <li class="botmenubuilder__options__actions__item">
                                                 <button onclick="botmenubuilder.removeSubItem(this)" type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
@@ -161,7 +161,7 @@ var botmenubuilder = {
                         <textarea name="botmenubuilder-option-X_UID_X-X_OPT_INDEX_X" id="X_UID_X-X_OPT_INDEX_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
                         <ul class="botmenubuilder__options__actions">
                             <li class="botmenubuilder__options__actions__item">
-                                <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X')" type="button" title="remove option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
+                                <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', 'X_OPT_INDEX_X')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
                             </li>
                             <li class="botmenubuilder__options__actions__item">
                                 <button onclick="botmenubuilder.removeSubItem(this)" type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
@@ -229,7 +229,7 @@ var botmenubuilder = {
         }
 
     },
-    addChildItem: (elem, XUIDX )=> {
+    addChildItem: (elem, XUIDX = null, XOPTSUBINDEXX = null )=> {
         if(botmenubuilder.el.debugger) {
             console.log('addChildItem()', elem);
         }
@@ -243,7 +243,7 @@ var botmenubuilder = {
                     <textarea name="botmenubuilder-option-X_UID_X-X_OPTSUB_INDEX_X" id="X_UID_X-X_OPTSUB_INDEX_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
                     <ul class="botmenubuilder__options__actions">
                         <li class="botmenubuilder__options__actions__item">
-                            <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X')" type="button" title="remove option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
+                            <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', 'X_OPTSUB_INDEX_X')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
                         </li>
                         <li class="botmenubuilder__options__actions__item">
                             <button onclick="" type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
@@ -259,16 +259,29 @@ var botmenubuilder = {
         </div>
         `;
         
-        const regexUid = /X_UID_X/ig;
-        let uid = !!XUIDX ? XUIDX : botmenubuilder.generateUUID();
-        childTemplate = childTemplate.replaceAll(regexUid, uid);
-
+        //paretnwrapper
         let parentWrapper = $(elem).parents('.botmenubuilder__options__item__inner__wrapper').first();
-        $(parentWrapper).find('.botmenubuilder__options__child').first().append(childTemplate);
+        //find the child
+        let childWrapper = $(parentWrapper).find('.botmenubuilder__options__child').first();
+
+        let numOfChildren = $(childWrapper).find(' > div').length + 1;
+        console.log(numOfChildren);
+
+        //check for sub indexes
+        let subOptIndex = !!XOPTSUBINDEXX ? XOPTSUBINDEXX + "-" + numOfChildren : 0 + "-" + numOfChildren;
+
+        const regexUid = /X_UID_X/ig;
+        const regexOptSubIndex = /X_OPTSUB_INDEX_X/ig;
+        let uid = !!XUIDX ? XUIDX : botmenubuilder.generateUUID();
+
+        childTemplate = childTemplate.replaceAll(regexUid, uid);
+        childTemplate = childTemplate.replaceAll(regexOptSubIndex, subOptIndex);
+
+        $(childWrapper).append(childTemplate);
 
         // TODO
         //focus to that textarea id
-        // $('#' + uid + '-' + 'X_OPTSUB_INDEX_X').focus();
+        $('#' + uid + '-' + subOptIndex).focus();
 
     },
     generateUUID: ()=> {
