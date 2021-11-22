@@ -19,6 +19,9 @@ var botmenubuilder = {
                 innerwrapper: '.js-botmenubuilderOptionsItemInnerWrapper',
             },
             item: {
+            },
+            importexport: {
+                fieldId: '#botmenubuilder__data'
             }
         }
     },
@@ -28,6 +31,8 @@ var botmenubuilder = {
         }
         if($(botmenubuilder.el.builder.elem).length > 0) {
             botmenubuilder.generateBuilderEssentials();
+
+            botmenubuilder.importData();
         }
     },
     generateBuilderEssentials: ()=> {
@@ -54,9 +59,9 @@ var botmenubuilder = {
         $(botmenubuilder.el.builder.elem).append(headerTemplate);
     },
 
-    addSection: (elem)=> {
+    addSection: (elem, X_UID_X = null, X_OPT_INDEX_X = null)=> {
         if(botmenubuilder.el.debugger) {
-            console.log('addSection()', elem);
+            console.table('addSection()', elem);
         }
         let itemTemplate = `
         <div class="botmenubuilder__item js-botmenubuilderItem" data-botmenubuilder-q-uid="X_UID_X" id="X_UID_X">
@@ -73,7 +78,7 @@ var botmenubuilder = {
             <div class="botmenubuilder__item__body">
 
                 <div class="botmenubuilder__item__title">
-                    <textarea name="botmenubuilder-title-X_UID_X" id="" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
+                    <textarea name="botmenubuilder-title-X_UID_X" id="title-X_UID_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
                 </div>
 
                 <div class="botmenubuilder__item__options__wrapper">
@@ -121,8 +126,8 @@ var botmenubuilder = {
         const regexUid = /X_UID_X/ig;
         const regexQIndex = /X_Q_INDEX_X/ig;
         const regexOptIndex = /X_OPT_INDEX_X/ig;
-        let uid = botmenubuilder.generateUUID();
-        let optIndex = botmenubuilder.generateUUID();
+        let uid = !!X_UID_X ? X_UID_X : botmenubuilder.generateUUID();
+        let optIndex = !!X_OPT_INDEX_X ? X_OPT_INDEX_X : botmenubuilder.generateUUID();
         let qIndex = $(elem).parents(botmenubuilder.el.builder.topLevelParent).find(botmenubuilder.el.builder.body).find(botmenubuilder.el.builder.section.item).length + 1;
         itemTemplate = itemTemplate.replaceAll(regexUid, uid);
         itemTemplate = itemTemplate.replaceAll(regexQIndex, qIndex);
@@ -149,7 +154,7 @@ var botmenubuilder = {
         }
 
     },
-    addSubItem: (elem)=> {
+    addSubItem: (elem, X_UID_X = null, X_OPT_INDEX_X = null)=> {
         if(botmenubuilder.el.debugger) {
             console.log('addSubItem()', elem);
         }
@@ -185,8 +190,8 @@ var botmenubuilder = {
         `;
 
         let parentWrapper = $(elem).parents(botmenubuilder.el.builder.section.item);
-        let uid = $(parentWrapper).attr('data-botmenubuilder-q-uid');
-        let optIndex = botmenubuilder.generateUUID();
+        let uid = !!X_UID_X ? X_UID_X : $(parentWrapper).attr('data-botmenubuilder-q-uid');
+        let optIndex = !!X_OPT_INDEX_X ? X_OPT_INDEX_X :  botmenubuilder.generateUUID();
 
         const regexUid = /X_UID_X/ig;
         const regexOptIndex = /X_OPT_INDEX_X/ig;
@@ -210,7 +215,7 @@ var botmenubuilder = {
         }
 
     },
-    addChildItem: (elem, XUIDX = null, XOPTSUBINDEXX = null )=> {
+    addChildItem: (elem, XUIDX = null, XOPTSUBINDEXX = null , useForImport = false)=> {
         if(botmenubuilder.el.debugger) {
             console.log('addChildItem()', elem);
         }
@@ -245,11 +250,11 @@ var botmenubuilder = {
         //find the child
         let childWrapper = $(parentWrapper).find('.botmenubuilder__options__child').first();
 
-        let numOfChildren = $(childWrapper).find(' > div').length + 1;
-
         //check for sub indexes
-        // let subOptIndex = !!XOPTSUBINDEXX ? XOPTSUBINDEXX + "-" + numOfChildren : 0 + "-" + numOfChildren;
         let subOptIndex = !!XOPTSUBINDEXX ? XOPTSUBINDEXX + "-" + botmenubuilder.generateUUID() : 0 + "-" + botmenubuilder.generateUUID();
+        if (!!useForImport) {
+            subOptIndex = !!XOPTSUBINDEXX ? XOPTSUBINDEXX : 0 + "-" + botmenubuilder.generateUUID();
+        }
 
         const regexUid = /X_UID_X/ig;
         const regexOptSubIndex = /X_OPTSUB_INDEX_X/ig;
@@ -309,5 +314,130 @@ var botmenubuilder = {
         ];
 
         return easterEgg[Math.floor(Math.random()*easterEgg.length)];
+    },
+    export: ()=> {
+        if(botmenubuilder.el.debugger) {
+            console.log('export()');
+        }
+
+        let data = [];
+
+        let topLevelElems = $(botmenubuilder.el.builder.elem).find(botmenubuilder.el.builder.section.item);
+
+        topLevelElems.each(function(index) {
+            let thisItem = $(this);
+            let uid = $(this).attr('data-botmenubuilder-q-uid');
+            let titleText = $('#title-' + uid).val();
+            
+            let toplevel = {
+                "id": uid,
+                "text": titleText,
+                "previous": "",
+                "options": []
+            }
+
+            let childItems = $(thisItem).find('.js-botmenubuilderOptions > .js-botmenubuilderOptionsItem');
+
+            if ($(childItems).length > 0) {
+                childItems.each(function(childIndex) {
+                    let childlevel = botmenubuilder.exportChild($(this));
+                    toplevel.options.push(childlevel);
+                });
+            }
+
+            data.push(toplevel);
+        });
+
+        let strData = JSON.stringify(data);
+        let jsonData = JSON.parse(strData);
+
+        $(botmenubuilder.el.builder.importexport.fieldId).val(strData);
+        console.log(jsonData);
+    },
+    exportChild: (elem)=> {
+        let childlevel = {};
+
+        let currentIndex = $(elem).find('textarea').first().attr('id');
+        if(!!currentIndex) {
+            let explodeIndex = currentIndex.split('-');
+            explodeIndex.pop();
+            let parent = explodeIndex.join('-');
+            childlevel = {
+                "id": currentIndex,
+                "text": $(elem).find('textarea').first().val(),
+                "previous": parent,
+                "options": []
+            }
+    
+            let childItems = $(elem).find('.botmenubuilder__options__child').first().find(' > .js-botmenubuilderOptionsItemInnerWrapper');
+    
+            if ($(childItems).length > 0) {
+                childItems.each(function(childIndex) {
+                    let childlevel2 = botmenubuilder.exportChild($(this));
+                    childlevel.options.push(childlevel2);
+                });
+            }
+        }
+
+        return childlevel;
+    },
+    importData: ()=> {
+        if(botmenubuilder.el.debugger) {
+            console.log('importData()');
+        }
+        let dataField = $(botmenubuilder.el.builder.importexport.fieldId).val();
+        let jsonData = JSON.parse(dataField);
+
+        if(jsonData.length > 0) {
+            jQuery.each(jsonData, function(sectionIndex) {
+                botmenubuilder.addSection($('.js-botmenubuilderBody'), jsonData[sectionIndex].id, 'fuckyou');
+                
+                $('#' + jsonData[sectionIndex].id + " .js-botmenubuilderOptions").html('');
+
+                let qOpt = jsonData[sectionIndex].options;
+                if(qOpt.length > 0) {
+                    jQuery.each(qOpt, function(optIndex) {
+                        let subOptId = qOpt[optIndex].id.split('-');
+                        subOptId.shift();
+                        subOptId = subOptId.join('-');
+                        botmenubuilder.addSubItem($('#' + jsonData[sectionIndex].id + " .botmenubuilder__add__option"),jsonData[sectionIndex].id , subOptId);
+                        
+                        let childOpt = qOpt[optIndex].options;
+                        if ($(childOpt).length > 0) {
+                            jQuery.each(childOpt, function(childOptIndex) {
+                                let childOptId = childOpt[childOptIndex].id.split('-');
+                                childOptId.shift();
+                                childOptId = childOptId.join('-');
+                                botmenubuilder.importChild(qOpt[optIndex].id, jsonData[sectionIndex].id, childOptId, childOpt[childOptIndex].options);
+                            });
+                        }
+                    });
+                }
+
+            });
+        }
+    },
+    importChild: (elem, xid, xoptindex, otherOptions)=> {
+
+        let theElem = $('#' + elem).parent().find('.botmenubuilder__addsub__option');
+        botmenubuilder.addChildItem(theElem, xid, xoptindex, true);
+
+        if(otherOptions.length > 0) {
+
+            jQuery.each(otherOptions, function(otherOptionsIndex) {
+
+                let theElemIdSearch = otherOptions[otherOptionsIndex].id.split('-');
+                theElemIdSearch.pop();
+                theElemIdSearch = theElemIdSearch.join('-');
+
+                let childOptId = otherOptions[otherOptionsIndex].id.split('-');
+                childOptId.shift();
+                childOptId = childOptId.join('-');
+
+                botmenubuilder.importChild(theElemIdSearch, xid, childOptId, otherOptions[otherOptionsIndex].options);
+            });
+
+        }
+
     }
 }
