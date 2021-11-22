@@ -5700,11 +5700,8 @@ input[type="checkbox"] {
     width: 100%; }
     .botmenubuilder__options__item:not(:last-child) {
       margin-bottom: 10px; }
-    .botmenubuilder__options__item__inner__wrapper {
-      transition: background-color ease 0.3s, border-radius ease 0.3s; }
-      .botmenubuilder__options__item__inner__wrapper:hover {
-        border-radius: 4px;
-        background-color: rgba(183, 183, 183, 0.1); }
+    .botmenubuilder__options__item__inner__wrapper:hover > .botmenubuilder__options__child:before {
+      background: #17a2b8; }
   .botmenubuilder__options__field {
     display: block;
     width: 100%;
@@ -5728,24 +5725,21 @@ input[type="checkbox"] {
     justify-content: space-between;
     align-items: center; }
   .botmenubuilder__options__child {
-    position: relative;
-    transition: background-color ease 0.3s, border-radius ease 0.3s; }
+    position: relative; }
     .botmenubuilder__options__child:before {
       display: block;
       content: "";
       position: absolute;
       top: 0;
       left: 0; }
-    .botmenubuilder__options__child:hover {
-      border-radius: 4px;
-      background-color: rgba(183, 183, 183, 0.1); }
     .botmenubuilder__options__child:before {
       height: 100%;
       width: 2px;
       background: #e3e6ed;
       top: 50%;
       left: 6px;
-      transform: translateY(-50%); }
+      transform: translateY(-50%);
+      transition: all ease 0.3s; }
     .botmenubuilder__options__child .botmenubuilder__options__item__inner__wrapper {
       display: block;
       padding: 8px 0 0 26px;

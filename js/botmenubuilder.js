@@ -16,6 +16,7 @@ var botmenubuilder = {
             subSection: {
                 main: '.js-botmenubuilderOptions',
                 item: '.js-botmenubuilderOptionsItem',
+                innerwrapper: '.js-botmenubuilderOptionsItemInnerWrapper',
             },
             item: {
             }
@@ -81,17 +82,17 @@ var botmenubuilder = {
 
                     <div class="botmenubuilder__options js-botmenubuilderOptions">
 
-                        <div class="botmenubuilder__options__item js-botmenubuilderOptionsItem" data-botmenubuilder-opt-index="1">
+                        <div class="botmenubuilder__options__item js-botmenubuilderOptionsItem" data-botmenubuilder-opt-index="X_OPT_INDEX_X">
 
-                            <div class="botmenubuilder__options__item__inner__wrapper">
+                            <div class="botmenubuilder__options__item__inner__wrapper js-botmenubuilderOptionsItemInnerWrapper">
                                 
                                 <div class="botmenubuilder__options__parent">
                                     <i class="icon-drag_indicator"></i>
                                     <div class="botmenubuilder__options__field">
-                                        <textarea name="botmenubuilder-option-X_UID_X-1" id="X_UID_X-1" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
+                                        <textarea name="botmenubuilder-option-X_UID_X-X_OPT_INDEX_X" id="X_UID_X-X_OPT_INDEX_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
                                         <ul class="botmenubuilder__options__actions">
                                             <li class="botmenubuilder__options__actions__item">
-                                                <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', '1')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
+                                                <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', 'X_OPT_INDEX_X')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
                                             </li>
                                             <li class="botmenubuilder__options__actions__item">
                                                 <button onclick="botmenubuilder.removeSubItem(this)" type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
@@ -100,7 +101,7 @@ var botmenubuilder = {
                                     </div>
                                 </div>
 
-                                <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper --> 
+                                <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper js-botmenubuilderOptionsItemInnerWrapper --> 
                                 <div class="botmenubuilder__options__child">
 
                                 </div>
@@ -119,10 +120,13 @@ var botmenubuilder = {
         
         const regexUid = /X_UID_X/ig;
         const regexQIndex = /X_Q_INDEX_X/ig;
+        const regexOptIndex = /X_OPT_INDEX_X/ig;
         let uid = botmenubuilder.generateUUID();
+        let optIndex = botmenubuilder.generateUUID();
         let qIndex = $(elem).parents(botmenubuilder.el.builder.topLevelParent).find(botmenubuilder.el.builder.body).find(botmenubuilder.el.builder.section.item).length + 1;
         itemTemplate = itemTemplate.replaceAll(regexUid, uid);
         itemTemplate = itemTemplate.replaceAll(regexQIndex, qIndex);
+        itemTemplate = itemTemplate.replaceAll(regexOptIndex, optIndex);
 
         $(elem).parents(botmenubuilder.el.builder.topLevelParent).find(botmenubuilder.el.builder.body).append(itemTemplate);
 
@@ -153,7 +157,7 @@ var botmenubuilder = {
         let subItemTemplate = `
         <div class="botmenubuilder__options__item js-botmenubuilderOptionsItem" data-botmenubuilder-opt-index="X_OPT_INDEX_X">
 
-            <div class="botmenubuilder__options__item__inner__wrapper">
+            <div class="botmenubuilder__options__item__inner__wrapper js-botmenubuilderOptionsItemInnerWrapper">
                 
                 <div class="botmenubuilder__options__parent">
                     <i class="icon-drag_indicator"></i>
@@ -170,7 +174,7 @@ var botmenubuilder = {
                     </div>
                 </div>
 
-                <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper --> 
+                <!-- loop here for multiple chlid  add botmenubuilder__options__item__inner__wrapper js-botmenubuilderOptionsItemInnerWrapper --> 
                 <div class="botmenubuilder__options__child">
 
                 </div>
@@ -182,7 +186,7 @@ var botmenubuilder = {
 
         let parentWrapper = $(elem).parents(botmenubuilder.el.builder.section.item);
         let uid = $(parentWrapper).attr('data-botmenubuilder-q-uid');
-        let optIndex = $(parentWrapper).find(botmenubuilder.el.builder.subSection.item).length + 1;
+        let optIndex = botmenubuilder.generateUUID();
 
         const regexUid = /X_UID_X/ig;
         const regexOptIndex = /X_OPT_INDEX_X/ig;
@@ -200,32 +204,32 @@ var botmenubuilder = {
         }
 
         if (confirm('Delete this sub-item and its contents?')) {
-            let currentWrapper = $(elem).parents(botmenubuilder.el.builder.subSection.main);
+            // let currentWrapper = $(elem).parents(botmenubuilder.el.builder.subSection.main);
             let currentItem = $(elem).parents(botmenubuilder.el.builder.subSection.item);
 
             $(currentItem).remove()
 
-            let allitemsLeft = $(currentWrapper).find(botmenubuilder.el.builder.subSection.item);
-            allitemsLeft.each(function(index) {
-                let thisItem = $(allitemsLeft[index]);
-                $(thisItem).attr('data-botmenubuilder-opt-index', index+1);
+            // let allitemsLeft = $(currentWrapper).find(botmenubuilder.el.builder.subSection.item);
+            // allitemsLeft.each(function(index) {
+            //     let thisItem = $(allitemsLeft[index]);
+            //     $(thisItem).attr('data-botmenubuilder-opt-index', index+1);
 
-                let findFirstField = $(thisItem).find('textarea').first();
+            //     let findFirstField = $(thisItem).find('textarea').first();
                 
-                //rebuild id attr
-                let getID = $(findFirstField).attr('id');
-                let getIDArr = getID.split('-');
-                getIDArr.pop();
-                getID = getIDArr.join('-');
-                $(findFirstField).attr('id', getID + '-' + (index+1));
+            //     //rebuild id attr
+            //     let getID = $(findFirstField).attr('id');
+            //     let getIDArr = getID.split('-');
+            //     getIDArr.pop();
+            //     getID = getIDArr.join('-');
+            //     $(findFirstField).attr('id', getID + '-' + (index+1));
 
-                //rebuild name attr
-                let getName = $(findFirstField).attr('name');
-                let getNameArr = getName.split('-');
-                getNameArr.pop();
-                getName = getNameArr.join('-');
-                $(findFirstField).attr('name', getName + '-' + (index+1));
-            });
+            //     //rebuild name attr
+            //     let getName = $(findFirstField).attr('name');
+            //     let getNameArr = getName.split('-');
+            //     getNameArr.pop();
+            //     getName = getNameArr.join('-');
+            //     $(findFirstField).attr('name', getName + '-' + (index+1));
+            // });
         }
 
     },
@@ -235,7 +239,7 @@ var botmenubuilder = {
         }
         // TODO find a solution to populate the sub index / level
         let childTemplate = `
-        <div class="botmenubuilder__options__item__inner__wrapper">
+        <div class="botmenubuilder__options__item__inner__wrapper js-botmenubuilderOptionsItemInnerWrapper">
             
             <div class="botmenubuilder__options__parent">
                 <i class="icon-drag_indicator"></i>
@@ -246,7 +250,7 @@ var botmenubuilder = {
                             <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', 'X_OPTSUB_INDEX_X')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
                         </li>
                         <li class="botmenubuilder__options__actions__item">
-                            <button onclick="" type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
+                            <button onclick="botmenubuilder.removeChildItem(this)" type="button" title="remove option" class="botmenubuilder__remove__option button button-icon button-icon--lg button-hover-danger"><i class="icon-clear"></i></button>
                         </li>
                     </ul>
                 </div>
@@ -260,15 +264,15 @@ var botmenubuilder = {
         `;
         
         //paretnwrapper
-        let parentWrapper = $(elem).parents('.botmenubuilder__options__item__inner__wrapper').first();
+        let parentWrapper = $(elem).parents(botmenubuilder.el.builder.subSection.innerwrapper).first();
         //find the child
         let childWrapper = $(parentWrapper).find('.botmenubuilder__options__child').first();
 
         let numOfChildren = $(childWrapper).find(' > div').length + 1;
-        console.log(numOfChildren);
 
         //check for sub indexes
-        let subOptIndex = !!XOPTSUBINDEXX ? XOPTSUBINDEXX + "-" + numOfChildren : 0 + "-" + numOfChildren;
+        // let subOptIndex = !!XOPTSUBINDEXX ? XOPTSUBINDEXX + "-" + numOfChildren : 0 + "-" + numOfChildren;
+        let subOptIndex = !!XOPTSUBINDEXX ? XOPTSUBINDEXX + "-" + botmenubuilder.generateUUID() : 0 + "-" + botmenubuilder.generateUUID();
 
         const regexUid = /X_UID_X/ig;
         const regexOptSubIndex = /X_OPTSUB_INDEX_X/ig;
@@ -284,6 +288,17 @@ var botmenubuilder = {
         $('#' + uid + '-' + subOptIndex).focus();
 
     },
+    removeChildItem: (elem)=>{
+        if(botmenubuilder.el.debugger) {
+            console.log('removeChildItem()', elem);
+        }
+
+        if (confirm('Delete this child-item and its contents?')) {
+            let currentItem = $(elem).parents(botmenubuilder.el.builder.subSection.innerwrapper).first();
+
+            $(currentItem).remove()
+        }
+    }, 
     generateUUID: ()=> {
         if(botmenubuilder.el.debugger) {
             console.log('generateUUID()');
