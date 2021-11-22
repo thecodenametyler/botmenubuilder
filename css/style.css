@@ -5669,7 +5669,10 @@ input[type="checkbox"] {
   margin: 0 auto;
   background: #fff;
   box-shadow: 0 6px 12px #8c98a414;
-  border: 1px solid rgba(231, 234, 243, 0.7); }
+  border: 1px solid rgba(231, 234, 243, 0.7);
+  transition: box-shadow ease 0.3s; }
+  .botmenubuilder__item:hover {
+    box-shadow: 0 4px 8px 0px #b7b7b7; }
   .botmenubuilder__item__header {
     display: flex;
     justify-content: space-between;

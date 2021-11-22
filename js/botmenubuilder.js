@@ -204,32 +204,9 @@ var botmenubuilder = {
         }
 
         if (confirm('Delete this sub-item and its contents?')) {
-            // let currentWrapper = $(elem).parents(botmenubuilder.el.builder.subSection.main);
             let currentItem = $(elem).parents(botmenubuilder.el.builder.subSection.item);
 
             $(currentItem).remove()
-
-            // let allitemsLeft = $(currentWrapper).find(botmenubuilder.el.builder.subSection.item);
-            // allitemsLeft.each(function(index) {
-            //     let thisItem = $(allitemsLeft[index]);
-            //     $(thisItem).attr('data-botmenubuilder-opt-index', index+1);
-
-            //     let findFirstField = $(thisItem).find('textarea').first();
-                
-            //     //rebuild id attr
-            //     let getID = $(findFirstField).attr('id');
-            //     let getIDArr = getID.split('-');
-            //     getIDArr.pop();
-            //     getID = getIDArr.join('-');
-            //     $(findFirstField).attr('id', getID + '-' + (index+1));
-
-            //     //rebuild name attr
-            //     let getName = $(findFirstField).attr('name');
-            //     let getNameArr = getName.split('-');
-            //     getNameArr.pop();
-            //     getName = getNameArr.join('-');
-            //     $(findFirstField).attr('name', getName + '-' + (index+1));
-            // });
         }
 
     },
@@ -283,7 +260,6 @@ var botmenubuilder = {
 
         $(childWrapper).append(childTemplate);
 
-        // TODO
         //focus to that textarea id
         $('#' + uid + '-' + subOptIndex).focus();
 
