@@ -27,7 +27,7 @@ var botmenubuilder = {
     },
     init: ()=> {
         if(botmenubuilder.el.debugger) {
-            console.log('init()');
+            console.log('botmenubuilder init()');
         }
         if($(botmenubuilder.el.builder.elem).length > 0) {
             botmenubuilder.generateBuilderEssentials();
@@ -59,7 +59,7 @@ var botmenubuilder = {
         $(botmenubuilder.el.builder.elem).append(headerTemplate);
     },
 
-    addSection: (elem, X_UID_X = null, X_OPT_INDEX_X = null)=> {
+    addSection: (elem, X_UID_X = null, X_OPT_INDEX_X = null, text = "")=> {
         if(botmenubuilder.el.debugger) {
             console.table('addSection()', elem);
         }
@@ -78,7 +78,7 @@ var botmenubuilder = {
             <div class="botmenubuilder__item__body">
 
                 <div class="botmenubuilder__item__title">
-                    <textarea name="botmenubuilder-title-X_UID_X" id="title-X_UID_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
+                    <textarea name="botmenubuilder-title-X_UID_X" id="title-X_UID_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1">` + text + `</textarea>
                 </div>
 
                 <div class="botmenubuilder__item__options__wrapper">
@@ -154,7 +154,7 @@ var botmenubuilder = {
         }
 
     },
-    addSubItem: (elem, X_UID_X = null, X_OPT_INDEX_X = null)=> {
+    addSubItem: (elem, X_UID_X = null, X_OPT_INDEX_X = null, text = "")=> {
         if(botmenubuilder.el.debugger) {
             console.log('addSubItem()', elem);
         }
@@ -167,7 +167,7 @@ var botmenubuilder = {
                 <div class="botmenubuilder__options__parent">
                     <i class="icon-drag_indicator"></i>
                     <div class="botmenubuilder__options__field">
-                        <textarea name="botmenubuilder-option-X_UID_X-X_OPT_INDEX_X" id="X_UID_X-X_OPT_INDEX_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
+                        <textarea name="botmenubuilder-option-X_UID_X-X_OPT_INDEX_X" id="X_UID_X-X_OPT_INDEX_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1">` + text + `</textarea>
                         <ul class="botmenubuilder__options__actions">
                             <li class="botmenubuilder__options__actions__item">
                                 <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', 'X_OPT_INDEX_X')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
@@ -215,7 +215,7 @@ var botmenubuilder = {
         }
 
     },
-    addChildItem: (elem, XUIDX = null, XOPTSUBINDEXX = null , useForImport = false)=> {
+    addChildItem: (elem, XUIDX = null, XOPTSUBINDEXX = null, text = "",  useForImport = false)=> {
         if(botmenubuilder.el.debugger) {
             console.log('addChildItem()', elem);
         }
@@ -226,7 +226,7 @@ var botmenubuilder = {
             <div class="botmenubuilder__options__parent">
                 <i class="icon-drag_indicator"></i>
                 <div class="botmenubuilder__options__field">
-                    <textarea name="botmenubuilder-option-X_UID_X-X_OPTSUB_INDEX_X" id="X_UID_X-X_OPTSUB_INDEX_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1"></textarea>
+                    <textarea name="botmenubuilder-option-X_UID_X-X_OPTSUB_INDEX_X" id="X_UID_X-X_OPTSUB_INDEX_X" placeholder="Title, ex: `+ botmenubuilder.generatePlaceHolder() +`" rows="1">` + text + `</textarea>
                     <ul class="botmenubuilder__options__actions">
                         <li class="botmenubuilder__options__actions__item">
                             <button onclick="botmenubuilder.addChildItem(this, 'X_UID_X', 'X_OPTSUB_INDEX_X')" type="button" title="add sub option" class="botmenubuilder__addsub__option button button-icon button-icon--lg button-hover-primary"><i class="icon-playlist_add"></i></button>
@@ -390,7 +390,7 @@ var botmenubuilder = {
 
         if(jsonData.length > 0) {
             jQuery.each(jsonData, function(sectionIndex) {
-                botmenubuilder.addSection($('.js-botmenubuilderBody'), jsonData[sectionIndex].id, 'fuckyou');
+                botmenubuilder.addSection($('.js-botmenubuilderBody'), jsonData[sectionIndex].id, '', jsonData[sectionIndex].text);
                 
                 $('#' + jsonData[sectionIndex].id + " .js-botmenubuilderOptions").html('');
 
@@ -400,7 +400,7 @@ var botmenubuilder = {
                         let subOptId = qOpt[optIndex].id.split('-');
                         subOptId.shift();
                         subOptId = subOptId.join('-');
-                        botmenubuilder.addSubItem($('#' + jsonData[sectionIndex].id + " .botmenubuilder__add__option"),jsonData[sectionIndex].id , subOptId);
+                        botmenubuilder.addSubItem($('#' + jsonData[sectionIndex].id + " .botmenubuilder__add__option"),jsonData[sectionIndex].id , subOptId, qOpt[optIndex].text);
                         
                         let childOpt = qOpt[optIndex].options;
                         if ($(childOpt).length > 0) {
@@ -408,7 +408,7 @@ var botmenubuilder = {
                                 let childOptId = childOpt[childOptIndex].id.split('-');
                                 childOptId.shift();
                                 childOptId = childOptId.join('-');
-                                botmenubuilder.importChild(qOpt[optIndex].id, jsonData[sectionIndex].id, childOptId, childOpt[childOptIndex].options);
+                                botmenubuilder.importChild(qOpt[optIndex].id, jsonData[sectionIndex].id, childOptId, childOpt[childOptIndex].options, childOpt[childOptIndex].text);
                             });
                         }
                     });
@@ -417,10 +417,10 @@ var botmenubuilder = {
             });
         }
     },
-    importChild: (elem, xid, xoptindex, otherOptions)=> {
+    importChild: (elem, xid, xoptindex, otherOptions, text = "")=> {
 
         let theElem = $('#' + elem).parent().find('.botmenubuilder__addsub__option');
-        botmenubuilder.addChildItem(theElem, xid, xoptindex, true);
+        botmenubuilder.addChildItem(theElem, xid, xoptindex, text, true);
 
         if(otherOptions.length > 0) {
 
@@ -434,7 +434,7 @@ var botmenubuilder = {
                 childOptId.shift();
                 childOptId = childOptId.join('-');
 
-                botmenubuilder.importChild(theElemIdSearch, xid, childOptId, otherOptions[otherOptionsIndex].options);
+                botmenubuilder.importChild(theElemIdSearch, xid, childOptId, otherOptions[otherOptionsIndex].options, otherOptions[otherOptionsIndex].text);
             });
 
         }

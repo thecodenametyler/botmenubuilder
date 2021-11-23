@@ -13,6 +13,8 @@
     display: block;
     transition: all ease 0.3s;
     text-decoration: none;
+    min-width: 10px;
+    min-height: 10px;
 
     &:hover {
         background: #e3e6ed;
