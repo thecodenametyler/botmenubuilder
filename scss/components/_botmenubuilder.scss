@@ -165,7 +165,13 @@
         }
     }
     
-
+    &__datafields {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
     &__wrapper {
         background: #f9fafc;
         position: relative;
@@ -187,9 +193,15 @@
             background-color: #fff;
             margin: 0;
             transition: all ease 0.3s;
+            &.botmenubuilder__field-has--error {
+                border: 1px solid #dc3545;
+            }
         }
         textarea {
             resize:vertical;
+        }
+        .hide {
+            display: none !important;
         }
         
         @import 'cust_button';

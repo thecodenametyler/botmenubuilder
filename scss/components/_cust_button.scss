@@ -151,6 +151,19 @@
                 border-color: #17a2b8;
             }
         }
+        &-success {
+            color: #fff;
+            background-color: #33af50;
+            border-color: #33af50;
+            &:hover {
+                color: #fff;
+                background-color: #28a745;
+                border-color: #28a745;
+            }
+            &:focus {
+                border-color: #28a745;
+            }
+        }
     }
 
     &-shadow {

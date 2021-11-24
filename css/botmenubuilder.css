@@ -133,6 +133,11 @@
       display: block;
       padding: 8px 0 0 26px;
       margin-bottom: 8px; }
+.botmenubuilder__datafields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
 .botmenubuilder__wrapper {
   background: #f9fafc;
   position: relative;
@@ -153,8 +158,14 @@
     background-color: #fff;
     margin: 0;
     transition: all ease 0.3s; }
+    .botmenubuilder__wrapper textarea.botmenubuilder__field-has--error,
+    .botmenubuilder__wrapper input[type="text"].botmenubuilder__field-has--error,
+    .botmenubuilder__wrapper input[type="number"].botmenubuilder__field-has--error {
+      border: 1px solid #dc3545; }
   .botmenubuilder__wrapper textarea {
     resize: vertical; }
+  .botmenubuilder__wrapper .hide {
+    display: none !important; }
   .botmenubuilder__wrapper .button {
     font-weight: normal;
     text-align: center;
@@ -264,6 +275,16 @@
           border-color: #17a2b8; }
         .botmenubuilder__wrapper .button-fill-info:focus {
           border-color: #17a2b8; }
+      .botmenubuilder__wrapper .button-fill-success {
+        color: #fff;
+        background-color: #33af50;
+        border-color: #33af50; }
+        .botmenubuilder__wrapper .button-fill-success:hover {
+          color: #fff;
+          background-color: #28a745;
+          border-color: #28a745; }
+        .botmenubuilder__wrapper .button-fill-success:focus {
+          border-color: #28a745; }
     .botmenubuilder__wrapper .button-shadow {
       padding: 6px;
       border-radius: 50px;

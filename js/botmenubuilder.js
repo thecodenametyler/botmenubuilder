@@ -4,7 +4,7 @@ $(()=>{
 
 var botmenubuilder = {
     el:{
-        debugger: true,
+        debugger: false,
         builder: {
             elem: '#botmenubuilder',
             topLevelParent: '.js-botmenubuilder',
@@ -22,6 +22,10 @@ var botmenubuilder = {
             },
             importexport: {
                 fieldId: '#botmenubuilder__data'
+            },
+            hasEmpty: {
+                flag: false,
+                fields: []
             }
         }
     },
@@ -319,6 +323,8 @@ var botmenubuilder = {
         if(botmenubuilder.el.debugger) {
             console.log('export()');
         }
+        botmenubuilder.el.builder.hasEmpty.flag = false;
+        botmenubuilder.el.builder.hasEmpty.fields = [];
 
         let data = [];
 
@@ -328,6 +334,12 @@ var botmenubuilder = {
             let thisItem = $(this);
             let uid = $(this).attr('data-botmenubuilder-q-uid');
             let titleText = $('#title-' + uid).val();
+
+            //check for empty fields then flag it
+            if(botmenubuilder.isEmptyOrSpaces(titleText)){
+                botmenubuilder.el.builder.hasEmpty.flag = true;
+                botmenubuilder.el.builder.hasEmpty.fields.push('#title-' + uid);
+            }
             
             let toplevel = {
                 "id": uid,
@@ -351,8 +363,30 @@ var botmenubuilder = {
         let strData = JSON.stringify(data);
         let jsonData = JSON.parse(strData);
 
+        if(!!botmenubuilder.el.builder.hasEmpty.flag) {
+            strData = '[]';
+
+            if (botmenubuilder.el.builder.hasEmpty.fields.length > 0) {
+                let hasEmptyFieldsLength = botmenubuilder.el.builder.hasEmpty.fields.length;
+
+                jQuery.each(botmenubuilder.el.builder.hasEmpty.fields, function(errorFieldId) {
+                    $(botmenubuilder.el.builder.hasEmpty.fields[errorFieldId]).addClass('botmenubuilder__field-has--error');
+
+                    $(botmenubuilder.el.builder.hasEmpty.fields[errorFieldId]).on('focusout', function() {
+                        $(this).removeClass('botmenubuilder__field-has--error');
+                        $(this).off('focusout');
+                    });
+
+                    if((errorFieldId + 1) == hasEmptyFieldsLength) {
+                        $(botmenubuilder.el.builder.hasEmpty.fields[errorFieldId]).focus();
+                    }
+
+                });
+            }
+
+        }
         $(botmenubuilder.el.builder.importexport.fieldId).val(strData);
-        console.log(jsonData);
+        
     },
     exportChild: (elem)=> {
         let childlevel = {};
@@ -362,9 +396,18 @@ var botmenubuilder = {
             let explodeIndex = currentIndex.split('-');
             explodeIndex.pop();
             let parent = explodeIndex.join('-');
+
+            let childText = $(elem).find('textarea').first().val();
+            
+            //check for empty fields then flag it
+            if(botmenubuilder.isEmptyOrSpaces(childText)){
+                botmenubuilder.el.builder.hasEmpty.flag = true;
+                botmenubuilder.el.builder.hasEmpty.fields.push( '#' + $(elem).find('textarea').first().attr('id') );
+            }
+
             childlevel = {
                 "id": currentIndex,
-                "text": $(elem).find('textarea').first().val(),
+                "text": childText,
                 "previous": parent,
                 "options": []
             }
@@ -380,6 +423,9 @@ var botmenubuilder = {
         }
 
         return childlevel;
+    },
+    isEmptyOrSpaces: (str)=> {
+        return str === null || str.match(/^ *$/) !== null;
     },
     importData: ()=> {
         if(botmenubuilder.el.debugger) {

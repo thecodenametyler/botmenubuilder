@@ -306,6 +306,16 @@
           border-color: #17a2b8; }
         .botmenuviewer__wrapper .button-fill-info:focus {
           border-color: #17a2b8; }
+      .botmenuviewer__wrapper .button-fill-success {
+        color: #fff;
+        background-color: #2fc752;
+        border-color: #2fc752; }
+        .botmenuviewer__wrapper .button-fill-success:hover {
+          color: #fff;
+          background-color: #28a745;
+          border-color: #28a745; }
+        .botmenuviewer__wrapper .button-fill-success:focus {
+          border-color: #28a745; }
     .botmenuviewer__wrapper .button-shadow {
       padding: 6px;
       border-radius: 50px;
