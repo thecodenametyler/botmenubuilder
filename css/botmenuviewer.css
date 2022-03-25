@@ -1,0 +1,382 @@
+/* Variables
+* ===============
+*
+* All variables and most of the configuration is defined on this page. */
+/*== Colors*/
+/**/
+/*## Gray and brand colors for use across theme.*/
+/*== Scaffolding*/
+/**/
+/*## Settings for some of the most global styles.*/
+/*** Background color for `<body>`.*/
+/*** Global text color on `<body>`.*/
+/*** Global textual link color.*/
+/*** Link hover color set via `darken()` function.*/
+/* 20/14*/
+/*** By default, this inherits from the `<body>`.*/
+/* spacing */
+/*== Buttons*/
+/**/
+/*## For each of Theme buttons, define text, background and border color.*/
+/*== Overlays*/
+/**/
+/*## Color overlays over images on banner or image grid galleries*/
+.botmenuviewer__header, .botmenuviewer__footer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1; }
+.botmenuviewer__header {
+  background: #101820FF;
+  color: #fff;
+  padding: 30px 70px;
+  box-shadow: 0px 0 10px 20px #f1f3f6, 0px 0 5px 10px #f1f3f6; }
+.botmenuviewer__logo img {
+  margin: 0 auto;
+  max-height: 62px; }
+.botmenuviewer__body {
+  padding: 124px 0 100px 0;
+  background: #f1f3f6;
+  min-height: 100vh;
+  display: flex; }
+.botmenuviewer__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  padding-bottom: 10px;
+  margin: 0;
+  min-height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column; }
+  .botmenuviewer__container__wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto; }
+.botmenuviewer__footer {
+  top: auto;
+  bottom: 0; }
+  .botmenuviewer__footer__nav {
+    padding: 10px; }
+.botmenuviewer__sendmessage {
+  background: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50px; }
+  .botmenuviewer__sendmessage textarea {
+    width: 100%;
+    resize: none;
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+    border: 0;
+    padding: 12px 24px 2px 24px;
+    margin-right: 10px;
+    border-radius: 50px; }
+  .botmenuviewer__sendmessage__wraper {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .botmenuviewer__sendmessage__attachment__btn {
+    margin-right: 10px; }
+.botmenuviewer__company__message__container, .botmenuviewer__message__user {
+  padding: 12px 20px;
+  background: #fff;
+  box-shadow: 0 2px 4px 0px #e1e6ec;
+  font-size: 16px;
+  line-height: 20px; }
+.botmenuviewer__message {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  width: 100%; }
+  .botmenuviewer__message--start-right {
+    justify-content: flex-start; }
+  .botmenuviewer__message--start-left {
+    justify-content: flex-end; }
+  .botmenuviewer__message__user {
+    background: #101820FF;
+    color: #fff;
+    border-radius: 50px;
+    margin-left: 30px; }
+.botmenuviewer__company__avatar {
+  margin-right: 10px;
+  background: #101820FF;
+  height: 48px;
+  width: 48px;
+  border-radius: 50px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  padding: 24px; }
+.botmenuviewer__company__message {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-right: 30px; }
+  .botmenuviewer__company__message__container {
+    border-radius: 50px;
+    width: 100%; }
+.botmenuviewer__time__divider {
+  text-align: center;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  color: #898c8e;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%; }
+.botmenuviewer__suggestions__wrapper, .botmenuviewer__replies {
+  width: 100%; }
+.botmenuviewer__replies {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column; }
+.botmenuviewer__suggestions__wrapper {
+  text-align: center;
+  padding: 12px 20px 0; }
+.botmenuviewer__suggestions__header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px; }
+.botmenuviewer__suggestions__option {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; }
+  .botmenuviewer__suggestions__option__item:not(:last-child) {
+    margin-right: 10px; }
+.botmenuviewer__suggestions__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px; }
+  .botmenuviewer__suggestions__title [class^="icon-"], .botmenuviewer__suggestions__title [class*=" icon-"] {
+    margin-right: 10px;
+    font-size: 22px;
+    line-height: 22px; }
+  .botmenuviewer__suggestions__title h5 {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0; }
+.botmenuviewer__suggestions__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; }
+.botmenuviewer__suggestions__item {
+  margin: 5px; }
+  .botmenuviewer__suggestions__item .button {
+    display: inline-flex !important;
+    border-radius: 40px !important; }
+    .botmenuviewer__suggestions__item .button span {
+      font-size: 16px !important;
+      line-height: 20px !important; }
+.botmenuviewer__wrapper {
+  position: relative; }
+  .botmenuviewer__wrapper .img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto; }
+  .botmenuviewer__wrapper .button {
+    font-weight: normal;
+    text-align: center;
+    touch-action: manipulation;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 2px;
+    display: block;
+    transition: all ease 0.3s;
+    text-decoration: none;
+    min-width: 10px;
+    min-height: 10px; }
+    .botmenuviewer__wrapper .button:hover {
+      background: #e3e6ed;
+      border-color: #e3e6ed;
+      text-decoration: none; }
+    .botmenuviewer__wrapper .button:focus {
+      border-color: #e3e6ed;
+      text-decoration: none; }
+    .botmenuviewer__wrapper .button-icon {
+      padding: 0;
+      font-size: 18px;
+      line-height: 1; }
+      .botmenuviewer__wrapper .button-icon--lg {
+        font-size: 22px; }
+      .botmenuviewer__wrapper .button-icon [class^="icon-"],
+      .botmenuviewer__wrapper .button-icon [class*=" icon-"] {
+        display: block; }
+    .botmenuviewer__wrapper .button-icontext {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .botmenuviewer__wrapper .button-icontext span {
+        font-size: 14px;
+        line-height: 1.4; }
+      .botmenuviewer__wrapper .button-icontext [class^="icon-"],
+      .botmenuviewer__wrapper .button-icontext [class*=" icon-"] {
+        font-size: 18px;
+        line-height: 1;
+        display: block;
+        margin-right: 10px; }
+      .botmenuviewer__wrapper .button-icontext--right [class^="icon-"],
+      .botmenuviewer__wrapper .button-icontext--right [class*=" icon-"] {
+        margin-right: auto;
+        margin-left: 10px; }
+      .botmenuviewer__wrapper .button-icontext--iconlg {
+        flex-direction: column; }
+        .botmenuviewer__wrapper .button-icontext--iconlg [class^="icon-"],
+        .botmenuviewer__wrapper .button-icontext--iconlg [class*=" icon-"] {
+          font-size: 28px;
+          margin: 0;
+          margin-bottom: 10px; }
+    .botmenuviewer__wrapper .button-round {
+      padding: 6px;
+      border-radius: 50px; }
+      .botmenuviewer__wrapper .button-round--lg {
+        padding: 12px; }
+      .botmenuviewer__wrapper .button-round.button-icontext {
+        padding-right: 10px;
+        padding-left: 10px; }
+    .botmenuviewer__wrapper .button-border-primary {
+      border-color: #007bff; }
+    .botmenuviewer__wrapper .button-border-secondary {
+      border-color: #6c757d; }
+    .botmenuviewer__wrapper .button-border-success {
+      border-color: #28a745; }
+    .botmenuviewer__wrapper .button-border-info {
+      border-color: #17a2b8; }
+    .botmenuviewer__wrapper .button-border-warning {
+      border-color: #ffc107; }
+    .botmenuviewer__wrapper .button-border-dark {
+      border-color: #343a40; }
+    .botmenuviewer__wrapper .button-border-danger {
+      border-color: #dc3545; }
+    .botmenuviewer__wrapper .button-fill {
+      background-color: #fff;
+      border-color: #fff;
+      color: #555; }
+      .botmenuviewer__wrapper .button-fill:hover {
+        background: #e3e6ed;
+        border-color: #e3e6ed;
+        color: #555; }
+      .botmenuviewer__wrapper .button-fill:focus {
+        border-color: #e3e6ed;
+        color: #555; }
+      .botmenuviewer__wrapper .button-fill-primary {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff; }
+        .botmenuviewer__wrapper .button-fill-primary:hover {
+          color: #fff;
+          background-color: #006ce0;
+          border-color: #006ce0; }
+        .botmenuviewer__wrapper .button-fill-primary:focus {
+          border-color: #006ce0; }
+      .botmenuviewer__wrapper .button-fill-info {
+        color: #fff;
+        background-color: #17b7cf;
+        border-color: #17b7cf; }
+        .botmenuviewer__wrapper .button-fill-info:hover {
+          color: #fff;
+          background-color: #17a2b8;
+          border-color: #17a2b8; }
+        .botmenuviewer__wrapper .button-fill-info:focus {
+          border-color: #17a2b8; }
+      .botmenuviewer__wrapper .button-fill-success {
+        color: #fff;
+        background-color: #2fc752;
+        border-color: #2fc752; }
+        .botmenuviewer__wrapper .button-fill-success:hover {
+          color: #fff;
+          background-color: #28a745;
+          border-color: #28a745; }
+        .botmenuviewer__wrapper .button-fill-success:focus {
+          border-color: #28a745; }
+    .botmenuviewer__wrapper .button-shadow {
+      padding: 6px;
+      border-radius: 50px;
+      box-shadow: 0 2px 4px 0px #e1e6ec; }
+      .botmenuviewer__wrapper .button-shadow:hover, .botmenuviewer__wrapper .button-shadow:focus {
+        box-shadow: 0 4px 8px 0px #b7b7b7; }
+    .botmenuviewer__wrapper .button-hover-primary, .botmenuviewer__wrapper .button-hover-secondary, .botmenuviewer__wrapper .button-hover-success, .botmenuviewer__wrapper .button-hover-info, .botmenuviewer__wrapper .button-hover-warning, .botmenuviewer__wrapper .button-hover-dark, .botmenuviewer__wrapper .button-hover-danger {
+      color: #555; }
+    .botmenuviewer__wrapper .button-hover-primary:hover {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #007bff; }
+    .botmenuviewer__wrapper .button-hover-primary:focus {
+      border-color: #007bff; }
+    .botmenuviewer__wrapper .button-hover-secondary:hover {
+      color: #fff;
+      background-color: #6c757d;
+      border-color: #6c757d; }
+    .botmenuviewer__wrapper .button-hover-secondary:focus {
+      border-color: #6c757d; }
+    .botmenuviewer__wrapper .button-hover-success:hover {
+      color: #fff;
+      background-color: #28a745;
+      border-color: #28a745; }
+    .botmenuviewer__wrapper .button-hover-success:focus {
+      border-color: #28a745; }
+    .botmenuviewer__wrapper .button-hover-info:hover {
+      color: #fff;
+      background-color: #17a2b8;
+      border-color: #17a2b8; }
+    .botmenuviewer__wrapper .button-hover-info:focus {
+      border-color: #17a2b8; }
+    .botmenuviewer__wrapper .button-hover-warning:hover {
+      color: #fff;
+      background-color: #ffc107;
+      border-color: #ffc107; }
+    .botmenuviewer__wrapper .button-hover-warning:focus {
+      border-color: #ffc107; }
+    .botmenuviewer__wrapper .button-hover-dark:hover {
+      color: #fff;
+      background-color: #343a40;
+      border-color: #343a40; }
+    .botmenuviewer__wrapper .button-hover-dark:focus {
+      border-color: #343a40; }
+    .botmenuviewer__wrapper .button-hover-danger:hover {
+      color: #fff;
+      background-color: #dc3545;
+      border-color: #dc3545; }
+    .botmenuviewer__wrapper .button-hover-danger:focus {
+      border-color: #dc3545; }
+    .botmenuviewer__wrapper .button--lg {
+      padding: 8px 14px; }
+
+@media (max-width: 768px) {
+  .botmenuviewer__suggestions__header {
+    flex-direction: column; }
+  .botmenuviewer__suggestions__title {
+    margin-right: 0;
+    margin-bottom: 5px; }
+  .botmenuviewer__suggestions__option--with-icon {
+    flex-direction: column; }
+    .botmenuviewer__suggestions__option--with-icon .botmenuviewer__suggestions__option__item:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 5px; } }
